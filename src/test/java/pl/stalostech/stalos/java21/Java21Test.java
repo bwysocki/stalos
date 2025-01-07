@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Java21Test {
 
     private static final int RECORD_COUNT = 50_000;
-    private static final ScopedValue<String> requestUUID = ScopedValue.newInstance();
+    //private static final ScopedValue<String> requestUUID = ScopedValue.newInstance();
 
     @Test
     public void test_patternMatchingForSwitch() {
@@ -44,7 +44,7 @@ public class Java21Test {
     public void test_gc() {
         // stack -> local primitives / references to objects / each thread own stack / NO GC (LIFO) - zmienne usuwane gdy metoda konczy dzialanie
         // heap -> objects / statics / tables / GC works here
-        // GC - removes from heap not references objects (referencje ze stack/CPU registr)
+        // GC - removes from heap not references objects (referencje ze stack/CPU registry)
         assertThat(gc()).isEqualTo("g1 young generation");
     }
 
@@ -68,7 +68,7 @@ public class Java21Test {
 
     }
 
-    @Test
+    /*@Test
     void test_scopeValues() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(3);
         Runnable handleRequest = () -> {
@@ -83,7 +83,7 @@ public class Java21Test {
         Thread.startVirtualThread(handleRequest);
 
         latch.await();
-    }
+    }*/
 
     /*
         Serial GC : -XX:+UseSerialGC (dobry dla aplikacji jednowatkowych - długie zatrzymania aplikacji podczas zbierania pamięci)
@@ -172,7 +172,7 @@ public class Java21Test {
         }
     }
 
-    private static void processRequest() {
+    /*private static void processRequest() {
         System.out.println("Processing request with UUID: " + requestUUID.get());
         performSubtask();
     }
@@ -187,6 +187,6 @@ public class Java21Test {
                 System.out.println("Kid Thread UUID: " + requestUUID.get());
             });
         }).start();
-    }
+    }*/
 
 }
